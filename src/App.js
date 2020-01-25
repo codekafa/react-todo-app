@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg';
 import './App.css';
 import TodoList from './todolist/todolist'
 import TodoItems from './todolist/todoitems'
@@ -27,12 +26,18 @@ class App extends Component {
     e.preventDefault()
     const newItem = this.state.currentItem
     if (newItem.text !== '') {
-      console.log(newItem)
-      const items = [...this.state.items, newItem]
-      this.setState({
-        items: items,
-        currentItem: { text: '', key: '' },
-      })
+      let f = this.state.items.filter(function(item){ return item.text === newItem.text})
+      if(f.length>0)
+      {
+      alert(newItem.text + " already exist!")
+      }
+      else {
+        const items = [...this.state.items, newItem]
+        this.setState({
+          items: items,
+          currentItem: { text: '', key: '' },
+        })
+      }   
     }
   }
 
